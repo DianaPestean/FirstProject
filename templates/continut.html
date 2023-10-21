@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Students Info</title>
+    </head>
+    <body>
+        {% for student in students %}
+            <h1>{{userplatform.first_name}} {{userplatform.last_name}}, {{userplatform.age}}, {{userplatform.gender}}</h1>
+
+        {% endfor %}
+    </body>
+</html>

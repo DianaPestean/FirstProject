@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/mentorapp/home/">Logo</a>
+
+{#  {% if request.user.is_authenticated %}#}
+{#    Hello, {{request.user}} !#}
+{#  {% else %}#}
+{#    Hello, stranger !#}
+{#  {% endif %}<br>#}
+
+    <a class="navbar-brand" href="{% url 'home' %}">Main Page</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+{#      {% if request.user.is_authenticated %}#}
+{#        <li class="nav-item active">#}
+{#          <a class="nav-link" href="{% url 'show-people' %}">Show Users <span class="sr-only">(current)</span></a>#}
+{#        </li>#}
+{#        <li class="nav-item active">#}
+{#          <a class="nav-link" href="{% url 'studentsoftheusers' user_id=user.id %}">My Students <span class="sr-only">(current)</span></a>#}
+{#        </li>#}
+{#     {% endif %}#}
+{#      <li class="nav-item">#}
+{#        <a class="nav-link" href="{% url 'active-students' %}">Active People</a>#}
+{#      </li>#}
+{#      {% if request.user.is_authenticated %}#}
+{#        <li class="nav-item">#}
+{#          <a class="nav-link" href="{% url 'add-student' %}">Add Students</a>#}
+{#        </li>#}
+{#      {% endif %}#}
+{#      {% if not request.user.is_authenticated %}#}
+        <li class="nav-item" >
+          <a class="nav-link" href="{% url 'login' %}">Log-in</a>
+        </li>
+{#        <li class="nav-item" >#}
+{#          <a class="nav-link" href="{% url 'otherlogin' %}"> Other Log-in</a>#}
+{#        </li>#}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Sign-up</a>
+        </li>
+{#      {% endif %}#}
+{#      {% if request.user.is_authenticated %}#}
+        <li class="nav-item">
+{#<!--          <button type="submit" onclick="return confirm('Are you sure?');">-->#}
+{#<!--            <a class="nav-link" href="{% url 'logout' %}">Log-out</a>-->#}
+{#<!--          </button>-->#}
+            <a class="nav-link" href="{% url 'logout' %}" onclick="return alert('Are you sure?');">Log-out</a>
+        </li>
+{#      {% endif %}#}
+    </ul>
+  </div>
+</nav>
