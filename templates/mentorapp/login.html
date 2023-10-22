@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 
 {% block title %}Log-in{% endblock %}
+
 {% block content %}
+    {#  {% if request.user.is_authenticated %}#}
+{#    Hello, {{request.user}} !#}
+{#  {% else %}#}
+{#    Hello, stranger !#}
+{#  {% endif %}<br>#}
+    <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+<a href="#" :class="tab === 'mentor' ? ">I'm a mentor</a>
+<a href="#" :class="tab === 'mentee' ? ">I'm a mentee</a>
+</nav>
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <input type="Submit" value="Login">
 </form>
-<p> If not registered, click <a href="{% url 'login' %}"> HERE </a> !
+    <p> If not registered, click <a href="{% url 'signup_mentor' %}"> HERE </a> for mentor and <a href="{% url 'signup_mentee' %}"> HERE </a> for mentee  !
 
 
 
