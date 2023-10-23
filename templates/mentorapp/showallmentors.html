@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Show Mentors{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    {% if nr_mentors %}
+        <div class="row">
+            <div>There is a number of {{nr_mentors}} Mentors</div><br>
+        </div>
+    {% endif %}
+    <div class="row">
+        <table class="table">
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email </th>
+            </thead>
+            <tbody>
+                {% for mentor in mentors %}
+                    <tr>
+                        <td>{{mentor.first_name}}</td>
+                        <td>{{mentor.last_name}}</td>
+                        <td>{{mentor.email}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

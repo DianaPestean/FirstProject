@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Show Mentees{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    {% if nr_mentees %}
+        <div class="row">
+            <div>There is a number of {{nr_mentees}} mentees</div><br>
+        </div>
+    {% endif %}
+    <div class="row">
+        <table class="table">
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email </th>
+            </thead>
+            <tbody>
+                {% for mentee in mentees %}
+                    <tr>
+                        <td>{{mentee.first_name}}</td>
+                        <td>{{mentee.last_name}}</td>
+                        <td>{{mentee.email}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

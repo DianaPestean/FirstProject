@@ -14,14 +14,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-{#      {% if request.user.is_authenticated %}#}
-{#        <li class="nav-item active">#}
-{#          <a class="nav-link" href="{% url 'show-people' %}">Show Users <span class="sr-only">(current)</span></a>#}
-{#        </li>#}
-{#        <li class="nav-item active">#}
-{#          <a class="nav-link" href="{% url 'studentsoftheusers' user_id=user.id %}">My Students <span class="sr-only">(current)</span></a>#}
-{#        </li>#}
-{#     {% endif %}#}
+      {% if request.user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'all_mentors' %}">Show Mentors <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'all_mentees' %}">Show Mentees <span class="sr-only">(current)</span></a>
+        </li>
+     {% endif %}
 {#      <li class="nav-item">#}
 {#        <a class="nav-link" href="{% url 'active-students' %}">Active People</a>#}
 {#      </li>#}
@@ -41,7 +41,7 @@
 {#<!--            <a class="nav-link" href="{% url 'logout' %}">Log-out</a>-->#}
 {#<!--          </button>-->#}
             <button type="submit" onclick="return confirm('Are you sure?');">
-            <a class="nav-link" href="{% url 'logout' %}">Log-out</a>
+                <a class="nav-link" href="{% url 'logout' %}">Log-out</a></button>
         </li>
       {% endif %}
     </ul>

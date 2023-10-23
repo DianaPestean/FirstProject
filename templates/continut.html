@@ -1,12 +1,12 @@
-{#<!DOCTYPE html>#}
-{#<html>#}
-{#    <head>#}
-{#        <title>Students Info</title>#}
-{#    </head>#}
-{#    <body>#}
-{#        {% for user in users %}#}
-{#            <h1>{{usermentor.first_name}} {{usermentor.last_name}}, {{usermentor.age}}, {{userplatform.gender}}</h1>#}
-{##}
-{#        {% endfor %}#}
-{#    </body>#}
-{#</html>#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mentors Info</title>
+    </head>
+    <body>
+        {% for mentor in mentors %}
+            <h1>{{usermentor.first_name}} {{usermentor.last_name}} {{ usermentor.email }}</h1>
+
+        {% endfor %}
+    </body>
+</html>

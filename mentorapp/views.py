@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import *
+from .models import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import  LoginView
@@ -31,6 +32,7 @@ def user_login_mentor(request):
         messages.error(request, "Autentificare nereusita !")
         return render(request, template_name="mentorapp/login.html",context={"form":form})
 
+
 def user_login_mentee(request):
     if request.method == "GET":
         form = LogInFormMentee()
@@ -46,21 +48,21 @@ def user_login_mentee(request):
                 messages.success(request, "Ai fost autentificat !")
                 return redirect('home')
         messages.error(request, "Autentificare nereusita !")
-        return render(request, template_name="mentorapp/login.html",context={"form":form})
+        return render(request, template_name="mentorapp/login.html",context={"form": form})
 
 
 def mentor_signup(request):
     if request.method == "GET":
         form = RegisterMentor()
-        return render(request, template_name="mentorapp/signup_mentor.html", context={"form":form})
+        return render(request, template_name="mentorapp/signup_mentor.html", context={"form": form})
     elif request.method == "POST":
         form = RegisterMentor(request.POST)
         if form.is_valid():   # validare if info is correct
-            # user_name = form.cleaned_data["user_name"]
-            # user_password = form.cleaned_data["password"]
-            user = form.save()
+            user = form.save(commit=False)
+            user.is_mentor = True
+            user.save()
             login(request, user)  # autentificare
-            return redirect('home')
+            return redirect('all_mentors')
         else:
             print("Forma invalida")
             print(form.errors)
@@ -71,12 +73,10 @@ def mentor_signup(request):
 def mentee_signup(request):
     if request.method == "GET":
         form = RegisterMentee()
-        return render(request, template_name="mentorapp/signup_mentee.html", context={"form":form})
+        return render(request, template_name="mentorapp/signup_mentee.html", context={"form": form})
     elif request.method == "POST":
         form = RegisterMentee(request.POST)
         if form.is_valid():   # validare if info is correct
-            # user_name = form.cleaned_data["user_name"]
-            # user_password = form.cleaned_data["password"]
             user = form.save()
             login(request, user)  # autentificare
             return redirect('home')
@@ -92,9 +92,21 @@ def user_logout(request):
     return redirect('login')
 
 
-def all_mentors():
-    pass
+def show_all_mentors(request):
+    all_mentors = UserMentor.objects.all()
+    mentors_context = {
+        "mentors": all_mentors,
+        "nr_mentors": all_mentors.count()
+    }
+    return render(request, template_name='mentorapp/showallmentors.html', context=mentors_context)
 
 
-def all_mentees():
-    pass
+def show_all_mentees(request):
+    all_mentees = UserMentee.objects.all()
+    mentees_context = {
+        "mentees": all_mentees,
+        "nr_mentees": all_mentees.count()
+    }
+    return render(request, template_name='mentorapp/showallmentees.html', context=mentees_context)
+
+
